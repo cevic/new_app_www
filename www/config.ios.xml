@@ -6,6 +6,6 @@
       -->
     <access origin="*" />
 
-    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="AutoHideSplashScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
 </widget>

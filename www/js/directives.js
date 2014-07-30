@@ -2,7 +2,6 @@
  * Created by user on 12/05/2014.
  */
 var appdir = angular.module('hciApp-directives', []);
-
     appdir.directive('audioPlayer', [function(){
     return{
         restrict: 'EA',

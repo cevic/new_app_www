@@ -4,9 +4,7 @@
     <description>
         A fantastic app for HCI Nottingham. With podcasts and Messages
     </description>
-    <author email="victor.udeozor@cevicapps.co.uk" href="http://cevicapps.co.uk">
-        Cevicapps
-    </author>
+    <author email="victor.udeozor@cevicapps.co.uk" href="http://cevicapps.co.uk"> Cevicapps </author>
     <content src="index.html" />
     <gap:platform name="ios" />
     <access origin="*" />
