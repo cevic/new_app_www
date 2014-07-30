@@ -37,10 +37,10 @@ var app = angular.module('hciApp', ['ionic', 'firebase', 'ngCordova', 'hciApp.co
     }])
     .run(['$rootScope','$ionicPlatform','IntroSettings','$state','$location', '$cordovaSplashscreen', '$cordovaStatusbar',
             function($rootScope,$ionicPlatform,IntroSettings,$state,$location,$cordovaSplashscreen,$cordovaStatusbar) {
-                //$cordovaSplashscreen.show();
+
             $ionicPlatform.ready(function() {
-                steroids.config.statusBar.enabled = false;
-            //$cordovaSplashscreen.hide();
+                alert("dfghj")
+                $cordovaSplashscreen.hide();
             /*setTimeout(function() {
                 $cordovaSplashscreen.hide();
                 alert("I'm ready!")
