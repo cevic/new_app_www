@@ -8,7 +8,7 @@
 
 var app = angular.module('hciApp', ['ionic', 'firebase', 'ngCordova', 'hciApp.controllers', 'hciApp-services',
     'hciApp-directives', 'hciApp-filters', 'ngAnimate', 'ngTouch', 'angular-gestures']);
-   /* var PhoneGapInit = function () {
+    var PhoneGapInit = function () {
         this.boot = function () {
             angular.bootstrap(document, ['hciApp']);
         };
@@ -23,7 +23,7 @@ var app = angular.module('hciApp', ['ionic', 'firebase', 'ngCordova', 'hciApp.co
     };
     angular.element(document).ready(function() {
         new PhoneGapInit();
-    });*/
+    });
     app.constant('FORECASTIO_KEY', 'e5fb549e22c9c3c729ce5a5ec0c6dff7')
     .constant('FLICKR_API_KEY', '504fd7414f6275eb5b657ddbfba80a2c')
     .constant('AWS_ACCESS_KEY', 'AKIAIIXJM3G6BRX3W4WQ')
@@ -37,7 +37,9 @@ var app = angular.module('hciApp', ['ionic', 'firebase', 'ngCordova', 'hciApp.co
     }])
     .run(['$rootScope','$ionicPlatform','IntroSettings','$state','$location', '$cordovaSplashscreen', '$cordovaStatusbar',
             function($rootScope,$ionicPlatform,IntroSettings,$state,$location,$cordovaSplashscreen,$cordovaStatusbar) {
-        $ionicPlatform.ready(function() {
+                //$cordovaSplashscreen.show();
+            $ionicPlatform.ready(function() {
+                steroids.config.statusBar.enabled = false;
             //$cordovaSplashscreen.hide();
             /*setTimeout(function() {
                 $cordovaSplashscreen.hide();
