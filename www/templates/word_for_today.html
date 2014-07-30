@@ -1,0 +1,19 @@
+<ion-view title="{{word.description[0].Title}}">
+    <ion-content class="has-header">
+        <div class="card">
+            <div class="item item-divider">
+                {{word.description[0].by}}
+            </div>
+            <div class="item item-text-wrap">
+                <p>{{word.description[0].word}}</p>
+                <span class="small-font">{{ word.description[0].bible_verse}}</span><br/>
+                <p ng-repeat="moreWord in word.discussion">{{moreWord.discussion}}</p><br/>
+
+            </div>
+            <div class="item item-divider contactMessage">
+                <span class="small-font italic">{{word.description[0].date | dateFil }}</span>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,34 @@
+
+<ion-view title="{{podcast.Metadata.title}}">
+    <ion-content padding="false">
+        <div class="row podcastDetailBanner">
+            <img class="col podcastBanner" ng-src="{{imageSrc}}">
+            <div id="camera-spinner" ng-show="showSpinner">
+                <i class="ion-loading-c"></i>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div id="player-spinner" ng-show="showSpinner">
+                <i class="ion-loading-c"></i>
+            </div>
+            <div class="item item-text-wrap ">
+                <p>{{ podcast.Metadata.description }}</p>
+                <span class="small-font">{{ podcast.Metadata.preacher }}</span>
+            </div>
+        </div>
+    </ion-content>
+    <div class="tabs tabs-icon-only">
+        <div class="tab-item">
+            <i class="icon ion-play" ng-click="player.play(messageSrc, podcast.Metadata.title)" ng-show="player.playButton"></i>
+            <i class="icon ion-pause" ng-click="player.stop()" ng-show="player.stopButton"></i>
+        </div>
+        <div class="range" ng-show="player.isPlaying">
+            <span class="title-top">{{player.messTitle}}</span>
+            <label>{{player.textPosition}}</label>
+            <input type="range" value="{{player.progress}}" ng-model="player.progress" step="0.01" max="{{player.maxValue}}"
+                   ng-change="player.update(player.progress)">
+            <label>{{player.fileDuration}}</label>
+        </div>
+    </div>
+</ion-view>

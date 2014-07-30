@@ -1,0 +1,71 @@
+
+<ion-view title="Activities">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-tabs class="tabs-icon-only tabs-positive"
+              delegate-handle = "activities">
+        <ion-tab title="activities"
+                 icon-on="ion-ios7-home"
+                 icon-off="ion-ios7-home-outline"
+                 ng-click="storeTab(0)">
+            <ion-content has-tabs="true">
+                <ion-nav-buttons side="right">
+                    <a class="button button-icon icon ion-ios7-telephone-outline" href="tel:+447586735610"></a>
+                </ion-nav-buttons>
+
+                <div class="card" ng-repeat="item in activities" item="item">
+                    <div class="item item-divider">
+                        {{item.day}}
+                    </div>
+                    <div class="item item-text-wrap">
+                        {{item.title}} <br/>
+                        <strong>Time : </strong>{{item.time}}<br/>
+                        <strong>Venue : </strong> {{item.venue}}
+                    </div>
+
+                </div>
+            </ion-content>
+        </ion-tab>
+        <ion-tab title="compose" icon-on="ion-ios7-compose" icon-off="ion-ios7-compose-outline" ng-click="createEmail()"
+                 ng-controller="SendEmailCtrl"></ion-tab>
+
+        <ion-tab title="navigate"
+                 icon-on="ion-ios7-navigate"
+                 icon-off="ion-ios7-navigate-outline"
+                 ng-click="storeTab(2)">
+            <ion-content ng-show="mapCanvas" scroll="false" has-tabs="true">
+                <ion-nav-buttons side="right" >
+                    <a ng-if="close" class="button button-icon " ng-click="closeMap()">
+                        <i class="ion-close"></i>
+                    </a>
+                    <a ng-if="stepByStep" class="button button-icon" ng-click="showDirections()">
+                        <i class="ion-plus"></i>
+                    </a>
+                    <a ng-if="hideSteps" class="button button-icon" ng-click="hideDirections()">
+                        <i class="ion-minus"></i>
+                    </a>
+                </ion-nav-buttons>
+               <div id="control" ng-show="controls" >
+                    <div class="mode duration circle"><span >{{totalkm}}</span></div>
+                </div>
+                <div id="map-canvas" class="map" ></div>
+                <div id="warnings_panel" style="width:100%;height:10%;text-align:center" ng-show="stepByStep" ></div>
+
+            </ion-content>
+            <ion-content ng-hide="!hideSteps" class="padding" title="Direction Steps">
+                <div id="directions-panel" ></div>
+            </ion-content>
+        </ion-tab>
+        <ion-tab ng-if="close" title="directions_driving" icon-on="icon-car myfont" icon-off="icon-car myfont"
+                 ng-click="setDirection('DRIVING')">
+        </ion-tab>
+        <ion-tab ng-if="close" title="directions_transit" icon-on="icon-bus myfont" icon-off="icon-bus myfont"
+                 ng-click="setDirection('TRANSIT')">
+        </ion-tab>
+        <ion-tab ng-if="close" title="directions_walking" icon-on="icon-walk myfont" icon-off="icon-walk myfont"
+                 ng-click="setDirection('WALKING')">
+        </ion-tab>
+
+    </ion-tabs>
+</ion-view>

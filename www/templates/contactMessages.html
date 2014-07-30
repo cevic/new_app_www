@@ -1,0 +1,16 @@
+<ion-view title="Contact Messages">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header ">
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+            <ion-item ng-repeat="(messageId, item) in messages" type="item-text-wrap"
+                      href="#/app/contactMessages/{{messageId}}">
+                <h2>{{item.Type}}</h2>
+                <p>{{item.Body}}</p>
+                <span class="small-font preacher-name">{{item.FullName}}</span>
+                <span class="small-font italic">{{item.TimeStamp | dateFil }}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

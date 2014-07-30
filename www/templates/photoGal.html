@@ -1,0 +1,32 @@
+<ion-view title="Photos">
+    <ion-pane id="photo-page">
+
+        <ion-nav-buttons side="left">
+            <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        </ion-nav-buttons>
+        <ion-content>
+            <!-- slider container -->
+            <div class="photo-slider">
+                <a class="button button-icon photo-close photo-icon-right" on-touch="expand()" >
+                    <i class="ion-arrow-{{fullHide}}"></i>
+                </a>
+                <a class="button button-icon photo-close photo-icon-left" on-touch="loopToggle()" >
+                    <i class="ion-{{loopStop}}"></i>
+                </a>
+                <!-- enumerate all photos -->
+                <img ng-repeat="photo in photos" class="photo-slide"  ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
+                     ng-show="isActive($index)" ng-src="{{photo}}"/>
+                <!-- prev / next controls -->
+                <a class="photo-arrow prev" ng-click="showPrev()"></a>
+                <a class="photo-arrow next" ng-click="showNext()"></a>
+                <!-- extra navigation controls -->
+                <!--<ul class="photo-nav">
+                    <li ng-repeat="photo in photos" ng-class="{'photo-active':isActive($index)}">
+                        <img ng-src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);" />
+                    </li>
+                </ul>-->
+            </div>
+        </ion-content>
+    </ion-pane>
+
+</ion-view>

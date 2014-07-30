@@ -1,0 +1,925 @@
+/* My app's CSS, go crazy, make it mine */
+
+/*low opacity*/
+
+.low-opacity .card {
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.low-opacity .item{
+    background-color: rgba(255,255,255,0);
+    /*  visibility: hidden;*/
+
+}
+.low-opacity .item-divider{
+     background-color: rgba(255,255,255,0.5) !important;
+}
+.modal{
+    background-color: rgba(255,255,255,0);
+}
+
+/*for contact form*/
+form i.icon.error {
+    color: #ef4e3a; }
+
+form input + i.icon.error, form select + i.icon.error, form textarea + i.icon.error {
+    display: none;
+    margin-left: 8px; }
+
+form.ng-submitted input.ng-invalid + i.icon.error, form.ng-submitted select.ng-invalid + i.icon.error,
+form.ng-submitted textarea.ng-invalid + i.icon.error {
+    display: block; }
+
+form .has-error {
+    border-left: 1px solid #cc2511;
+    border-right: 1px solid #cc2511;
+}
+
+form .has-success {
+    border-left: 2px solid #3d8b3d;
+    border-right: 2px solid #3d8b3d;
+}
+
+form.ng-submitted input.ng-valid + i.icon.error, form.ng-submitted select.ng-valid + i.icon.error,
+form.ng-submitted textarea.ng-valid + i.icon.error{
+    display: none; }
+
+.validated {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%; }
+
+.validated .input-label {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 30%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 30%;
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+.validated input {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 60%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 60%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
+}
+
+.validated error {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 10%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 10%;
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
+}
+
+
+.item-stacked-label i.icon.error {
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+
+ /*general*/
+.logo {
+    position: relative;
+    display: block;
+    max-height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 80px;
+}
+.tab-item img {
+    height: 30px;
+    width: 30px;
+}
+#camera-spinner {
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    width:100%;
+    font-size:50px;
+}
+.button-center{
+    margin: 10px auto;
+    display: block;
+    clear: both;
+}
+.circle {
+    position: relative;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(85, 197, 218, 0.71);
+}
+.contactMessage .pushUp10 {
+    top: -10px;
+    position: relative;
+}
+img #camera-photo {
+    width:100%;
+}
+.podcastDetailBanner, .podcastBanner, .podcastDetailImage {
+    padding: 0 ;
+}
+.podcastDetailBanner{
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 0;
+    padding: 56.25% 0 0 0;
+    overflow: hidden;
+}
+
+.podcastDetailBanner .podcastBanner {
+    position: absolute;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.pushUp30 {
+    position: relative;
+    top: -40px;
+}
+
+.podcastDetailImage {
+    left: 70%;
+    max-width: 70px;
+    max-height: 70px;
+}
+
+#photo-page .scroll {
+    height: 100%;
+}
+.small-font {
+    font-size: 0.75em;
+}
+.italic {
+    font-style: italic;
+    float: right;
+}
+.item-options .line-height {
+    line-height: 6em;
+}
+.tabs .title-top {
+    position: absolute;
+    text-align: center !important;
+    top: -1em;
+    height: 10px;
+    font-size: 0.8em;
+    width: 100%;
+}
+.item-content .preacher-name {
+    width: 60%;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-content p {
+    margin-bottom: 0;
+}
+/*
+.scroll-content{
+
+z-index: 11;
+    background-color:white;
+}
+*/
+/* for map page*/
+
+div [jsselect~=legs] {
+    background-color: #fff;
+    padding: 5px;
+}
+
+div .adp-warnbox {
+    display: none;
+}
+
+#control {
+    display: none;
+    bottom: 55px !important;
+}
+#control .duration {
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+}
+#control .mode {
+    padding: 0;
+    box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+}
+#control span {
+    position: relative;
+    top: 15px;
+}
+#directions-panel {
+    width: auto;
+}
+/*for testing*/
+.ion_pane_map map {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.ion_pane_map .scroll {
+    height: 100%;
+}
+/*end oftesting map css*/
+#map-canvas{
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background:#eee;
+}
+
+.myfont {
+    /*margin-top: -2px !important;*/
+    margin-bottom: 2px !important;
+    font-size: 40px !important;
+}
+
+@media print {
+    #map-canvas {
+        height: 500px;
+        margin: 0;
+    }
+
+    #directions-panel {
+        float: none;
+        width: auto;
+    }
+}
+
+#panel {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -180px;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+}
+
+/*for intro slider*/
+.slider {
+    height: 100%;
+}
+.slider-slide {
+    padding-top: 80px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+
+.intro .logo_intro{
+    margin: 30px 0px;
+}
+.intro .logo_intro{
+    background: rgba(47, 139, 190, 0.85);
+}
+.intro .intro_pics{
+    height: auto;
+    width: 200PX;
+    display: block;
+    margin: auto;
+}
+#list {
+    width: 170px;
+    margin: 30px auto;
+    font-size: 20px;
+}
+#list ol {
+    margin-top: 30px;
+}
+#list ol li {
+    text-align: left;
+    list-style: decimal;
+    margin: 10px 0px;
+}
+
+/*for my fonts*/
+
+@charset "UTF-8";
+
+@font-face {
+    font-family: "myfont";
+    src:url("../vendor/ionic/fonts/myfont.eot");
+    src:url("../vendor/ionic/fonts/myfont.eot?#iefix") format("embedded-opentype"),
+    url("../vendor/ionic/fonts/myfont.woff") format("woff"),
+    url("../vendor/ionic/fonts/myfont.ttf") format("truetype"),
+    url("../vendor/ionic/fonts/myfont.svg#myfont") format("svg");
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+[data-icon]:before {
+    font-family: "myfont" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "myfont" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-myfont-walk:before {
+    content: "a";
+}
+.icon-myfont-bus:before {
+    content: "b";
+}
+.icon-myfont-car:before {
+    content: "f";
+}
+.icon-walk:before {
+    content: "c";
+}
+.icon-car:before {
+    content: "d";
+}
+.icon-bus:before {
+    content: "e";
+}
+
+
+/*for the the slider*/
+
+.photo-arrow {
+    cursor: pointer;
+    display: block;
+    height: 64px;
+    margin-top: -35px;
+    outline: medium none;
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    z-index: 5;
+}
+.photo-arrow.prev {
+    background-image: url("../images/prev.png");
+    left: 20px;
+    opacity: 0.1;
+    transition: all 0.2s linear 0s;
+}
+.photo-arrow.next {
+    background-image: url("../images/next.png");
+    opacity: 0.1;
+    right: 20px;
+    transition: all 0.2s linear 0s;
+}
+.photo-arrow.prev:hover{
+    opacity:0.4;
+}
+.photo-arrow.next:hover{
+    opacity:0.4;
+}
+.photo-nav {
+    bottom: -4px;
+    display: block;
+    height: 48px;
+    left: 0;
+    margin: 0 auto;
+    padding: 1em 0 0.8em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 5;
+}
+.photo-nav li {
+    border: 5px solid #AAAAAA;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    margin: 0 8px;
+    position: relative;
+    width: 50px;
+}
+.photo-nav li.active {
+    border: 5px solid #FFFFFF;
+}
+.photo-nav li img {
+    width: 100%;
+}
+
+/*
+*/
+
+.photo-slider {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -ms-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.photo-slider img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.photo-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.photo-slide.ng-hide.ng-hide-add {
+    opacity:1;
+    display: block !important;
+
+    -webkit-transition:1s linear all;
+    -moz-transition:1s linear all;
+    -o-transition:1s linear all;
+    transition:1s linear all;
+
+    -webkit-transform: rotateX(50deg) rotateY(30deg);
+    -moz-transform: rotateX(50deg) rotateY(30deg);
+    -ms-transform: rotateX(50deg) rotateY(30deg);
+    -o-transform: rotateX(50deg) rotateY(30deg);
+    transform: rotateX(50deg) rotateY(30deg);
+
+    -webkit-transform-origin: right top 0;
+    -moz-transform-origin: right top 0;
+    -ms-transform-origin: right top 0;
+    -o-transform-origin: right top 0;
+    transform-origin: right top 0;
+}
+.photo-slide.ng-hide-add.ng-hide-add-active {
+    opacity:0;
+}
+.photo-slide.ng-hide-remove {
+    -webkit-transition:1s linear all;
+    -moz-transition:1s linear all;
+    -o-transition:1s linear all;
+    transition:1s linear all;
+
+    display:block!important;
+    opacity:0;
+}
+.photo-slide, .photo-slide.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+}
+.photo-slider .photo-close {
+    position: absolute;
+    top: 5px;
+    outline: medium none;
+    z-index: 5;
+    opacity: 0.7;
+    transition: all 0.2s linear 0s;
+    font-size: 24px;
+}
+.photo-icon-left{
+    left: 20px;
+}
+.photo-icon-right{
+    right: 20px;
+}
+
+
+/*from ionic weather css
+
+#wrapper {
+    background-color: black;
+}*/
+#scroller {
+}
+.bg-image {
+    position: fixed;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
+}
+
+.bg-fade > .ng-enter {
+    opacity: 0;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+.bg-fade > .ng-enter-active {
+    opacity: 1;
+}
+.bg-fade > .ng-leave {
+    opacity: 1;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+.bg-fade > .ng-leave-active {
+    opacity: 0;
+}
+
+.wunderground-logo {
+    width: 100px;
+    height: 14px;
+    background: url('../icons/wunderground.png') no-repeat transparent;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .wunderground-logo {
+        background: url('../icons/wunderground@2x.png') no-repeat transparent;
+        background-size: 100px 14px;
+    }
+}
+
+#wrapper h1 h2 h3 h4 h5 {
+    color: #fff;
+    font-weight: 300;
+}
+
+#main-content {
+    color: #fff;
+    padding: 10px;
+}
+
+.ion-ios7-sunny-outline {
+    color: yellow;
+}
+
+.ionic-refresher-content {
+    color: rgb(255,255,255) !important;
+    text-shadow: none;
+}
+
+/**
+ * Header
+ */
+#header {
+    background-color: transparent !important;
+    height: 44px;
+}
+#header > * {
+    margin-top: 0;
+}
+#header .title {
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 4px;
+}
+#header .title .city {
+    font-size: 16px;
+}
+
+#city-nav-icon {
+    font-size: 11px;
+    margin-right: 2px;
+}
+
+.scroll-refresher {
+    overflow: visible;
+}
+.ionic-refresher-content {
+    background-color: rgba(0,0,0,0.4);
+    height: 400px;
+    bottom: 0;
+}
+.ionic-refresher-content i {
+    margin-top: 360px;
+}
+/**
+ * Current weather
+ */
+
+#current-weather {
+    height: 180px;
+    box-sizing: content-box;
+}
+#current-weather > * {
+    color: #fff;
+}
+#current-weather .current-temp {
+    font-size: 50px;
+    font-weight: 100;
+    margin: 0;
+    padding: 0;
+    line-height: 80px;
+}
+
+
+#current-icon {
+    font-size: 42px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#temp-hi, #temp-lo { display: inline-block; }
+#temp-lo {
+    margin-left: 10px;
+}
+
+/**
+ * Forecast and details
+ */
+.weather-box {
+    background-color: rgba(0,0,0,0.2);
+    padding: 9px;
+    margin: 10px 0px;
+    color: rgba(255,255,255,0.9);
+}
+
+.weather-box .title {
+    color: rgba(255,255,255,0.9);
+    font-weight: normal;
+    margin: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+}
+
+
+.weather-box .row {
+    border-bottom: 1px dotted rgba(255,255,255,0.3);
+    margin: 0;
+    padding: 0;
+}
+.weather-box .col {
+    text-align: center;
+}
+.weather-box .col:first-child {
+    text-align: left;
+}
+.weather-box .col:last-child {
+    text-align: right;
+}
+
+.weather-box span {
+    vertical-align: middle;
+}
+
+.weather-box .icon {
+    font-size: 42px;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.temp-high {
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+}
+.temp-low {
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    color: #4a87ee;
+}
+
+
+.no-header {
+    top: 0 !important;
+}
+
+#forecast-scroll {
+    margin: 10px 0px;
+}
+#hourly-forecast {
+    width: 2250px;
+    /*height: 70px;*/
+}
+.hourly-hour {
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#forecast .credit {
+    float: right;
+    margin-top: 4px;
+    margin-right: 4px;
+}
+#forecast .credit a {
+    color: #fff;
+}
+
+/**
+ * Settings modal
+ */
+
+#settings-modal {
+    background-color: rgba(0,0,0,0.2);
+}
+
+#settings-modal .item {
+    background-color: rgba(0,0,0,0.9);
+    border: none;
+    color: #fff;
+}
+#settings-modal .input-label {
+    color: #fff;
+}
+#settings-modal .item-radio .item-content {
+    padding: 10px !important;
+    background-color: rgba(85, 197, 218, 0.71);
+    margin: 20px 10px;
+}
+#settings-modal .item-radio input:checked ~ .item-content {
+    background: rgba(85, 197, 218, 1);
+}
+#settings-modal .item-radio input:checked ~ .radio-icon {
+    visibility: hidden;
+}
+
+
+/*for pages background*/
+#wrapper, .pane, .view{
+    background-image: url('../images/generalBackground.jpg') !important;;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.dark {
+    /*background-color: #3f4041 !important;
+    color: #ffffff;*/
+}
+.dark .scroll-content {
+    /*background-color: #3f4041 !important;*/
+}
+.dark .item {
+    /*background-color: #3f4041;
+    border-top: 1px solid #464646;
+    border-bottom: 2px solid #333333;
+    padding: 20px;*/
+    border: none;
+    margin: 0 0 15px;
+    color: #F0F1F1;
+    max-height: none;
+}
+.dark .item:last-child {
+    border-bottom: 1px solid #333333;
+}
+.dark .item-complex .item-content, .dark .item-radio .item-content, .dark .item {
+background-color: rgba(0, 0, 0, 0.1)
+}
+.dark .item.current {
+    background-color: #262727 !important;
+    border-top: 1px solid #464646 !important;
+    border-bottom: 2px solid #333333 !important;
+}
+.dark .item.current p, .dark .item.current h3 {
+    opacity: .4;
+}
+.dark h2,
+.dark h3,
+.dark p,
+.dark a {
+    color: #F0F1F1;
+}
+
+.dark-head {
+    text-decoration: none;
+}
+
+
+/*for Ionic Cards*/
+
+
+.bar.bar-transparent {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+}
+
+.bar .title {
+    color: #eee;
+}
+
+.swipe-cards {
+    position: fixed;
+}
+
+.swipe-card {
+    display: block;
+    position: fixed;
+    -webkit-transform: scale(1,1);
+    left: 50%;
+    top: 10em;
+    width: 300px;
+    height: 200px;
+    margin-left: -150px;
+    box-sizing: border-box;
+    background-color: rgba(26, 25, 25, 0.35);
+    padding: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.swipe-card .title {
+    height: 40px;
+    line-height: 30px;
+    color: #444;
+}
+.swipe-cards .color-white {
+    color: #ffffff;
+}
+.swipe-card .image {
+    overflow: hidden;
+    max-height: 110px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+.swipe-cards .ellipsis {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.swipe-card .button {
+    border: none;
+}
+.swipe-card .image img {
+    width: 100%;
+    border-radius: 0px 0px 4px 4px;
+}
+
+#start-card {
+    color: #fff;
+    background-color: #30BD8A;
+    line-height: 300px;
+    word-wrap: break-word;
+    border: 6px solid #4CD68E;
+    text-align: center;
+}
+#start-card span {
+    display: inline-block;
+    line-height: 40px;
+    width: 200px;
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+#footer .button {
+    color: #fff;
+}
+
+@-webkit-keyframes bounceIn {
+    0% {
+        -webkit-transform: scale(0,0);
+    }
+    70% {
+        -webkit-transform: scale(1.2,1.2);
+    }
+    100% {
+        -webkit-transform: scale(1,1);
+    }
+}
+
+.swipe-cards.pop-in-start {
+    -webkit-transform: scale(0,0);
+}
+.swipe-cards.pop-in {
+    -webkit-animation: bounceIn 0.4s ease-out;
+}
+/*End of Ionic cards*/

@@ -1,0 +1,452 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>My HCI App</title>
+
+    <link rel="stylesheet" href="/vendor/ionic/css/ionic.css" />
+    <link rel="stylesheet" href="/vendor/ionic/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/stylesheets/application.css" />
+
+      <!--ionic/angularjs scripts-->
+    <script src="/vendor/ionic/js/ionic.bundle.js"></script>
+    <!--<script src="http://code.ionicframework.com/1.0.0-beta.8/js/ionic.bundle.js?973816"></script>-->
+    <script src="/components/angular-touch/angular-touch.min.js"></script>
+    <script src="/vendor/ionic/js/angular/angular-resource.min.js"></script>
+    <script src="/vendor/ionic/js/angular/gestures.min.js"></script>
+    <script src="/vendor/audio5/audio5.js"></script>
+    <script src="/vendor/buzz/buzz.js"></script>
+      <!--amazon sdk-->
+    <script src="/vendor/aws_sdk/aws-sdk.js"></script>
+      <!--firebase-->
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+    <!--<script src="vendor/firebase/firebase.js"></script>
+    <script src="vendor/firebase/angularfire.min.js"></script>-->
+
+    <script src="/components/lodash/dist/lodash.min.js"></script>
+    <script src="/components/restangular/dist/restangular.min.js"></script>
+    <script src="/vendor/ng-cordova/dist/ng-cordova.js"></script>
+      <!--other js files-->
+      <script src="/js/services.js"></script>
+      <script src="/js/filters.js"></script>
+      <script src="/js/directives.js"></script>
+      <script src="/js/controllers.js"></script>
+      <script src="/js/app.js"></script>
+      <script src="/components/steroids-js/steroids.js"></script>
+      <!-- cordova.js is served from localhost to ensure the correct version -->
+      <script src="cordova.js"></script>
+      <script src="/javascripts/onerror.js"></script>
+    <script src="/javascripts/console.log.js"></script>
+
+      <!--Google map JS-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIBZyEoxiRQX6j6M3Dwy2VEOVS_xGRjYU&sensor=false"></script>
+
+
+  </head>
+  <body ng-app="hciApp">
+      <ion-nav-view></ion-nav-view>
+      <script type="text/ng-template" id="menu.html"></script>
+      <script type="text/ng-template" id="templates/intro.html">
+          <ion-view>
+              <ion-nav-buttons side="left">
+                  <button class="button button-positive button-clear no-animation"
+                          ng-click="startApp()" ng-if="!slideIndex">
+                      Skip Intro
+                  </button>
+                  <button class="button button-positive button-clear no-animation"
+                          ng-click="previous()" ng-if="slideIndex > 0">
+                      Previous Slide
+                  </button>
+              </ion-nav-buttons>
+              <ion-nav-buttons side="right">
+                  <button class="button button-positive button-clear no-animation"
+                          ng-click="next()" ng-if="slideIndex != 3">
+                      Next
+                  </button>
+                  <button class="button button-positive button-clear no-animation"
+                          ng-click="startApp()" ng-if="slideIndex == 3">
+                      Start using MyApp
+                  </button>
+              </ion-nav-buttons>
+              <ion-slide-box on-slide-changed="slideChanged(index)">
+                  <ion-slide>
+                      <h3>Thank you for choosing this App!</h3>
+                      <div class="intro">
+                          <img class="logo_intro" ng-src="../icons/hci_logo.png">
+                      </div>
+                      <p>
+                          We hope you are blessed by it's contents.
+                      </p>
+                      <p>
+                          Let's show you a few features.
+                      </p>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Get a Devotional Every Day</h3>
+                      <h5>Word for the Day</h5>
+                      <div class="intro">
+                          <img class="intro_pics" ng-src="../images/home.jpg">
+                      </div>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Listen to your favourite messages</h3>
+                      <div class="intro">
+                          <img class="intro_pics" ng-src="../images/podcasts.jpg">
+                      </div>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Send a message</h3>
+
+                      <h5>You can be anonymous</h5>
+                      <h5>Or choose to get a response</h5>
+                      <div class="intro">
+                          <img class="intro_pics" ng-src="../images/sendMessage.jpg">
+                      </div>
+                  </ion-slide>
+              </ion-slide-box>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/home.html">
+          <ion-view title="This is Home" hide-nav-bar="true" >
+              <ion-pane id="wrapper">
+                  <background-cycler class="bg-fade"></background-cycler>
+
+                  <ion-header-bar id="header" class="bar bar-header bar-clear">
+                      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+                      <h1 class="title">
+                          <span class="city"><i id="city-nav-icon" class="icon ion-navigate"></i> {{currentLocationString}}</span><br>
+                          <current-time localtz="current.minutely.icon"></current-time>
+                      </h1>
+                      <button menu-toggle="right" class="button button-icon icon ion-ios7-information-outline"></button>
+                  </ion-header-bar>
+
+                  <ion-content scroll-event-interval="20" scroll-effects scrollbar-y="false" class="no-header">
+                      <ion-refresher on-refresh="refreshData()"></ion-refresher>
+                      <img class="logo" ng-src="../icons/hci_logo.png">
+                      <div class="swipe-cards" ng-controller="WordForTodayCtrl">
+                          <div class="swipe-card pop-in-start pop-in" ng-show="word1">
+                              <div class="title color-white">
+                                  {{word.description[0].Title}}
+                              </div>
+                              <div class="image color-white">
+                                  <p class="ellipsis">{{word.description[0].word}}</p>
+                                  <span class="small-font italic">{{word.description[0].bible_verse }}</span>
+                              </div>
+                              <div class="button-bar">
+                                  <button class="button button-clear button-positive" ng-click="readMore()">{{word.description[0].by}}</button>
+                                  <button class="button button-clear button-positive" ng-click="readMore()">Read More</button>
+                              </div>
+                          </div>
+                      </div>
+                  </ion-content>
+              </ion-pane>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/word_for_today.html">
+          <ion-view title="{{word.description[0].Title}}">
+              <ion-content class="has-header">
+                  <div class="card">
+                      <div class="item item-divider">
+                          {{word.description[0].by}}
+                      </div>
+                      <div class="item item-text-wrap">
+                          <p>{{word.description[0].word}}</p>
+                          <span class="small-font">{{ word.description[0].bible_verse}}</span><br/>
+                          <p ng-repeat="moreWord in word.discussion">{{moreWord.discussion}}</p><br/>
+
+                      </div>
+                      <div class="item item-divider contactMessage">
+                          <span class="small-font italic">{{word.description[0].date | dateFil }}</span>
+
+                      </div>
+                  </div>
+              </ion-content>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/podcastsLists.html">
+          <ion-view title="Message Lists" class="dark">
+              <ion-nav-buttons side="left">
+                  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+              </ion-nav-buttons>
+              <ion-nav-buttons side="right">
+                  <button menu-toggle="right" class="button button-icon icon ion-ios7-information-outline"></button>
+              </ion-nav-buttons>
+              <ion-content class="has-header ">
+                  <ion-refresher on-refresh="getMessages()"
+                                 pulling-text="Pull to refresh..."
+                                 refreshing-text="Refreshing!"
+                                 refreshing-icon="ion-loading-c"></ion-refresher>
+                  <ion-list class="list" >
+                      <ion-item ng-repeat="message in messages" href="#/app/todo/{{message.object.ETag}}" class="item">
+                          <h2>{{message.object.Metadata.title}}</h2>
+                          <p>{{message.object.Metadata.description}}</p>
+                          <span class="small-font preacher-name">{{message.object.Metadata.preacher}}</span>
+                          <span class="small-font italic">{{message.object.Metadata.date | dateFil }}</span>
+                          <!--the list play buttons-->
+                          <ion-option-button class="button-calm line-height"  ng-click="play(message.objKey, message.object.Metadata.title)">Play</ion-option-button>
+                          <ion-option-button class="button-positive line-height" ng-click="stop()">Stop</ion-option-button>
+                      </ion-item>
+                  </ion-list>
+              </ion-content>
+              <div class="tabs tabs-icon-only" ng-show="player.isPlaying">
+                  <div class="tab-item">
+                      <i class="icon ion-play" ng-click="player.play(messageSrc)" ng-show="player.playButton"></i>
+                      <i class="icon ion-pause" ng-click="player.stop()" ng-show="player.stopButton"></i>
+                  </div>
+                  <div class="range" ng-show="player.isPlaying">
+                      <span class="title-top">{{player.messTitle}}</span>
+                      <label>{{player.textPosition}}</label>
+                      <input type="range" value="{{player.progress}}" ng-model="player.progress" step="0.01" max="{{player.maxValue}}"
+                             ng-change="player.update(player.progress)">
+                      <label>{{player.fileDuration}}</label>
+                  </div>
+              </div>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/podcast.html">
+
+          <ion-view title="{{podcast.Metadata.title}}">
+              <ion-content padding="false">
+                  <div class="row podcastDetailBanner">
+                      <img class="col podcastBanner" ng-src="{{imageSrc}}">
+                      <div id="camera-spinner" ng-show="showSpinner">
+                          <i class="ion-loading-c"></i>
+                      </div>
+                  </div>
+
+                  <div class="list card">
+                      <div id="player-spinner" ng-show="showSpinner">
+                          <i class="ion-loading-c"></i>
+                      </div>
+                      <div class="item item-text-wrap ">
+                          <p>{{ podcast.Metadata.description }}</p>
+                          <span class="small-font">{{ podcast.Metadata.preacher }}</span>
+                      </div>
+                  </div>
+              </ion-content>
+              <div class="tabs tabs-icon-only">
+                  <div class="tab-item">
+                      <i class="icon ion-play" ng-click="player.play(messageSrc, podcast.Metadata.title)" ng-show="player.playButton"></i>
+                      <i class="icon ion-pause" ng-click="player.stop()" ng-show="player.stopButton"></i>
+                  </div>
+                  <div class="range" ng-show="player.isPlaying">
+                      <span class="title-top">{{player.messTitle}}</span>
+                      <label>{{player.textPosition}}</label>
+                      <input type="range" value="{{player.progress}}" ng-model="player.progress" step="0.01" max="{{player.maxValue}}"
+                             ng-change="player.update(player.progress)">
+                      <label>{{player.fileDuration}}</label>
+                  </div>
+              </div>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/photoGal.html">
+          <ion-view title="Photos">
+              <ion-pane id="photo-page">
+
+                  <ion-nav-buttons side="left">
+                      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+                  </ion-nav-buttons>
+                  <ion-content>
+                      <!-- slider container -->
+                      <div class="photo-slider">
+                          <a class="button button-icon photo-close photo-icon-right" on-touch="expand()" >
+                              <i class="ion-arrow-{{fullHide}}"></i>
+                          </a>
+                          <a class="button button-icon photo-close photo-icon-left" on-touch="loopToggle()" >
+                              <i class="ion-{{loopStop}}"></i>
+                          </a>
+                          <!-- enumerate all photos -->
+                          <img ng-repeat="photo in photos" class="photo-slide"  ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
+                               ng-show="isActive($index)" ng-src="{{photo}}"/>
+                          <!-- prev / next controls -->
+                          <a class="photo-arrow prev" ng-click="showPrev()"></a>
+                          <a class="photo-arrow next" ng-click="showNext()"></a>
+                          <!-- extra navigation controls -->
+                          <!--<ul class="photo-nav">
+                              <li ng-repeat="photo in photos" ng-class="{'photo-active':isActive($index)}">
+                                  <img ng-src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);" />
+                              </li>
+                          </ul>-->
+                      </div>
+                  </ion-content>
+              </ion-pane>
+
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/send_email.html">
+          <ion-view title="Message Lists">
+
+          <ion-nav-buttons side="left">
+              <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+          </ion-nav-buttons>
+          <div class="modal" >
+              <ion-content has-header="true">
+                  <div class="list card">
+                      <form name="contactForm" novalidate="novalidate" on-valid-submit="addMessage()" >
+                          <label class="item item-input item-select validated">
+                              <div class="input-label">
+                                  Type of Message
+                              </div>
+                              <select name="subjectList" data-ng-model="user.subjectList" data-ng-options="id as value for (id, value) in subjectListOptions" required>
+                                  <option value="">select one...</option>
+                              </select>
+                              <i class="icon ion-alert-circled error"></i>
+                          </label>
+                          <ion-toggle toggle-class="toggle-calm"  ng-repeat="item in anony" data-ng-model="user.anonymous" data-ng-checked="user.anonymous">
+                              {{ item.text }}
+                          </ion-toggle>
+
+                          <!--hide the names rows for now-->
+                          <label class="item item-input validated" ng-show="!user.anonymous">
+                              <input type="text" id="fullName" name="fullName" ng-model="user.full_name"  placeholder="Full Name" ng-maxlength="50" ng-required="!user.anonymous">
+                              <i class="icon ion-alert-circled error col col-10"></i>
+                          </label>
+
+                          <ion-toggle toggle-class="toggle-calm" ng-show="!user.anonymous" ng-repeat="item in replyContact"
+                                      ng-model="user.receiveResponse"
+                                      ng-checked="user.receiveResponse">
+                              {{ item.text }}
+                          </ion-toggle>
+                          <label class="item item-input validated" ng-show="!user.anonymous && user.receiveResponse">
+                              <input type="email" name="email" ng-model="user.email" placeholder="Email" ng-required="user.receiveResponse"/>
+                              <i class="icon ion-alert-circled error col col-10"></i>
+                          </label>
+                          <label class="item item-input validated" ng-show="user.receiveResponse">
+                              <input type="tel" name="phoneNo" ng-model="user.phoneNo"  placeholder="PhoneNo"/>
+                              <i class="icon ion-alert-circled error col col-10"></i>
+                          </label>
+
+                          <label class="item item-input item-stacked-label validated">
+                              <textarea id="msg" name="msg" ng-model="user.msg" placeholder="Enter Message"
+                                        ng-minlength="5" required="required"></textarea>
+                              <i class="icon ion-alert-circled error col col-10"></i>
+                          </label>
+                          <button type="submit" class="button button-center button-calm">
+                              Send
+                          </button>
+                      </form>
+                  </div>
+              </ion-content>
+          </div>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/findUs.html">
+          <ion-view title="Activities">
+              <ion-nav-buttons side="left">
+                  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+              </ion-nav-buttons>
+              <ion-tabs class="tabs-icon-only tabs-positive"
+                        delegate-handle = "activities">
+                  <ion-tab title="activities"
+                           icon-on="ion-ios7-home"
+                           icon-off="ion-ios7-home-outline"
+                           ng-click="storeTab(0)">
+                      <ion-content has-tabs="true">
+                          <ion-nav-buttons side="right">
+                              <a class="button button-icon icon ion-ios7-telephone-outline" href="tel:+447586735610"></a>
+                          </ion-nav-buttons>
+
+                          <div class="card" ng-repeat="item in activities" item="item">
+                              <div class="item item-divider">
+                                  {{item.day}}
+                              </div>
+                              <div class="item item-text-wrap">
+                                  {{item.title}} <br/>
+                                  <strong>Time : </strong>{{item.time}}<br/>
+                                  <strong>Venue : </strong> {{item.venue}}
+                              </div>
+
+                          </div>
+                      </ion-content>
+                  </ion-tab>
+                  <ion-tab title="compose" icon-on="ion-ios7-compose" icon-off="ion-ios7-compose-outline" ng-click="createEmail()"
+                           ng-controller="SendEmailCtrl"></ion-tab>
+
+                  <ion-tab title="navigate"
+                           icon-on="ion-ios7-navigate"
+                           icon-off="ion-ios7-navigate-outline"
+                           ng-click="storeTab(2)">
+                      <ion-content ng-show="mapCanvas" scroll="false" has-tabs="true">
+                          <ion-nav-buttons side="right" >
+                              <a ng-if="close" class="button button-icon " ng-click="closeMap()">
+                                  <i class="ion-close"></i>
+                              </a>
+                              <a ng-if="stepByStep" class="button button-icon" ng-click="showDirections()">
+                                  <i class="ion-plus"></i>
+                              </a>
+                              <a ng-if="hideSteps" class="button button-icon" ng-click="hideDirections()">
+                                  <i class="ion-minus"></i>
+                              </a>
+                          </ion-nav-buttons>
+                          <div id="control" ng-show="controls" >
+                              <div class="mode duration circle"><span >{{totalkm}}</span></div>
+                          </div>
+                          <div id="map-canvas" class="map" ></div>
+                          <div id="warnings_panel" style="width:100%;height:10%;text-align:center" ng-show="stepByStep" ></div>
+
+                      </ion-content>
+                      <ion-content ng-hide="!hideSteps" class="padding" title="Direction Steps">
+                          <div id="directions-panel" ></div>
+                      </ion-content>
+                  </ion-tab>
+                  <ion-tab ng-if="close" title="directions_driving" icon-on="icon-car myfont" icon-off="icon-car myfont"
+                           ng-click="setDirection('DRIVING')">
+                  </ion-tab>
+                  <ion-tab ng-if="close" title="directions_transit" icon-on="icon-bus myfont" icon-off="icon-bus myfont"
+                           ng-click="setDirection('TRANSIT')">
+                  </ion-tab>
+                  <ion-tab ng-if="close" title="directions_walking" icon-on="icon-walk myfont" icon-off="icon-walk myfont"
+                           ng-click="setDirection('WALKING')">
+                  </ion-tab>
+
+              </ion-tabs>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/contact_Message.html">
+          <ion-view title="{{message.Type}}">
+              <ion-content class="has-header ">
+                  <div class="card">
+                      <div class="item item-divider">
+                          {{message.FullName}}
+                      </div>
+                      <div class="item item-text-wrap">
+                          <p>{{message.Body}}</p>
+                          <small>Email: {{message.Email}}</small><br/>
+                          <small>Phone: {{message.PhoneNo}}</small>
+                      </div>
+                      <div class="item item-divider contactMessage">
+                <span class="item-checkbox">
+                <label class="checkbox">
+                    <input  style="display: inline-block" type="checkbox" ng-model="message.completed.checked" ng-checked="message.completed.checked">
+                    <span class="pushUp10 padding-left">{{ message.completed.text }}</span>
+                </label>
+                </span>
+                          <span class="small-font italic">{{message.TimeStamp | dateFil }}</span>
+
+                      </div>
+                  </div>
+              </ion-content>
+          </ion-view>
+      </script>
+      <script type="text/ng-template" id="templates/contactMessages.html">
+          <ion-view title="Contact Messages">
+              <ion-nav-buttons side="left">
+                  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+              </ion-nav-buttons>
+              <ion-content class="has-header ">
+                  <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+                      <ion-item ng-repeat="(messageId, item) in messages" type="item-text-wrap"
+                                href="#/app/contactMessages/{{messageId}}">
+                          <h2>{{item.Type}}</h2>
+                          <p>{{item.Body}}</p>
+                          <span class="small-font preacher-name">{{item.FullName}}</span>
+                          <span class="small-font italic">{{item.TimeStamp | dateFil }}</span>
+                      </ion-item>
+                  </ion-list>
+              </ion-content>
+          </ion-view>
+      </script>
+  </body>
+  </html>

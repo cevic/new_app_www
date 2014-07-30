@@ -1,0 +1,35 @@
+<ion-view title="Message Lists" class="dark">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-ios7-information-outline"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header ">
+        <ion-list class="list" >
+            <ion-item ng-repeat="message in messages" href="#/app/todo/{{message.object.ETag}}" class="item">
+                <h2>{{message.object.Metadata.title}}</h2>
+                <p>{{message.object.Metadata.description}}</p>
+                <span class="small-font preacher-name">{{message.object.Metadata.preacher}}</span>
+                <span class="small-font italic">{{message.object.Metadata.date | dateFil }}</span>
+                <!--the list play buttons-->
+                <ion-option-button class="button-calm line-height"  ng-click="play(message.objKey, message.object.Metadata.title)">Play</ion-option-button>
+                <ion-option-button class="button-positive line-height" ng-click="stop()">Stop</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="tabs tabs-icon-only" ng-show="player.isPlaying">
+        <div class="tab-item">
+            <i class="icon ion-play" ng-click="player.play(messageSrc)" ng-show="player.playButton"></i>
+            <i class="icon ion-pause" ng-click="player.stop()" ng-show="player.stopButton"></i>
+        </div>
+        <div class="range" ng-show="player.isPlaying">
+            <span class="title-top">{{player.messTitle}}</span>
+            <label>{{player.textPosition}}</label>
+            <input type="range" value="{{player.progress}}" ng-model="player.progress" step="0.01" max="{{player.maxValue}}"
+                   ng-change="player.update(player.progress)">
+            <label>{{player.fileDuration}}</label>
+        </div>
+    </div>
+</ion-view>

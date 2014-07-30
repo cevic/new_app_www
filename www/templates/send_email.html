@@ -1,0 +1,55 @@
+<ion-view title="Message Lists">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+        <div class="modal" >
+            <ion-content has-header="true">
+                <div class="list card">
+                    <form name="contactForm" novalidate="novalidate" on-valid-submit="addMessage()" >
+                        <label class="item item-input item-select validated">
+                            <div class="input-label">
+                                Type of Message
+                            </div>
+                            <select name="subjectList" data-ng-model="user.subjectList" data-ng-options="id as value for (id, value) in subjectListOptions" required>
+                                <option value="">select one...</option>
+                            </select>
+                            <i class="icon ion-alert-circled error"></i>
+                        </label>
+                        <ion-toggle toggle-class="toggle-calm"  ng-repeat="item in anony" data-ng-model="user.anonymous" data-ng-checked="user.anonymous">
+                            {{ item.text }}
+                        </ion-toggle>
+
+                        <!--hide the names rows for now-->
+                        <label class="item item-input validated" ng-show="!user.anonymous">
+                            <input type="text" id="fullName" name="fullName" ng-model="user.full_name"  placeholder="Full Name" ng-maxlength="50" ng-required="!user.anonymous">
+                            <i class="icon ion-alert-circled error col col-10"></i>
+                        </label>
+
+                        <ion-toggle toggle-class="toggle-calm" ng-show="!user.anonymous" ng-repeat="item in replyContact"
+                                    ng-model="user.receiveResponse"
+                                    ng-checked="user.receiveResponse">
+                            {{ item.text }}
+                        </ion-toggle>
+                        <label class="item item-input validated" ng-show="!user.anonymous && user.receiveResponse">
+                            <input type="email" name="email" ng-model="user.email" placeholder="Email" ng-required="user.receiveResponse"/>
+                            <i class="icon ion-alert-circled error col col-10"></i>
+                        </label>
+                        <label class="item item-input validated" ng-show="user.receiveResponse">
+                            <input type="tel" name="phoneNo" ng-model="user.phoneNo"  placeholder="PhoneNo"/>
+                            <i class="icon ion-alert-circled error col col-10"></i>
+                        </label>
+
+                        <label class="item item-input item-stacked-label validated">
+                            <textarea id="msg" name="msg" ng-model="user.msg" placeholder="Enter Message"
+                                      ng-minlength="5" required="required"></textarea>
+                            <i class="icon ion-alert-circled error col col-10"></i>
+                        </label>
+                        <button type="submit" class="button button-center button-calm">
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </ion-content>
+        </div>
+    </ion-view>

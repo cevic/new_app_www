@@ -1,0 +1,24 @@
+<ion-view title="{{message.Type}}">
+    <ion-content class="has-header ">
+        <div class="card">
+            <div class="item item-divider">
+                {{message.FullName}}
+            </div>
+            <div class="item item-text-wrap">
+                <p>{{message.Body}}</p>
+                <small>Email: {{message.Email}}</small><br/>
+                <small>Phone: {{message.PhoneNo}}</small>
+            </div>
+            <div class="item item-divider contactMessage">
+                <span class="item-checkbox">
+                <label class="checkbox">
+                    <input  style="display: inline-block" type="checkbox" ng-model="message.completed.checked" ng-checked="message.completed.checked">
+                    <span class="pushUp10 padding-left">{{ message.completed.text }}</span>
+                </label>
+                </span>
+                <span class="small-font italic">{{message.TimeStamp | dateFil }}</span>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

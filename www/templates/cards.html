@@ -1,0 +1,18 @@
+<ion-view title="Cards">
+    <ion-content class="has-header">
+        <div class="swipe-cards" ng-controller="CardsCtrl">
+            <div class="swipe-card">
+                <div class="title">
+                    {{cards.title}}
+                </div>
+                <div class="image">
+                    <img ng-src="{{cards.image}}">
+                </div>
+                <div class="button-bar">
+                    <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
+                    <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

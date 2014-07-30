@@ -1,0 +1,58 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <button class="button button-positive button-clear no-animation"
+                ng-click="startApp()" ng-if="!slideIndex">
+            Skip Intro
+        </button>
+        <button class="button button-positive button-clear no-animation"
+                ng-click="previous()" ng-if="slideIndex > 0">
+            Previous Slide
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-positive button-clear no-animation"
+                ng-click="next()" ng-if="slideIndex != 3">
+            Next
+        </button>
+        <button class="button button-positive button-clear no-animation"
+                ng-click="startApp()" ng-if="slideIndex == 3">
+            Start using MyApp
+        </button>
+    </ion-nav-buttons>
+    <ion-slide-box on-slide-changed="slideChanged(index)">
+        <ion-slide>
+            <h3>Thank you for choosing this App!</h3>
+            <div class="intro">
+                <img class="logo_intro" ng-src="../icons/hci_logo.png">
+            </div>
+            <p>
+                We hope you are blessed by it's contents.
+            </p>
+            <p>
+                Let's show you a few features.
+            </p>
+        </ion-slide>
+        <ion-slide>
+            <h3>Get a Devotional Every Day</h3>
+            <h5>Word for the Day</h5>
+            <div class="intro">
+                <img class="intro_pics" ng-src="../images/home.jpg">
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <h3>Listen to your favourite messages</h3>
+            <div class="intro">
+                <img class="intro_pics" ng-src="../images/podcasts.jpg">
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <h3>Send a message</h3>
+
+            <h5>You can be anonymous</h5>
+            <h5>Or choose to get a response</h5>
+            <div class="intro">
+                <img class="intro_pics" ng-src="../images/sendMessage.jpg">
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>
